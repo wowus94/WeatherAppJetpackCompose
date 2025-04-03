@@ -1,6 +1,7 @@
 package ru.vlyashuk.weatherappjetpackcompose.data.network.api
 
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
@@ -10,10 +11,15 @@ object ApiFactory {
 
     private const val BASE_URL = "https://api.weatherapi.com/v1/"
 
+    var mHttpLoggingInterceptor = HttpLoggingInterceptor()
+        .setLevel(HttpLoggingInterceptor.Level.BODY)
+
+
     private val okHttpClient = OkHttpClient.Builder()
+        .addInterceptor(mHttpLoggingInterceptor)
         .addInterceptor { chain ->
             val originalRequest = chain.request()
-            val newUrl = originalRequest.url().newBuilder()
+            val newUrl = originalRequest.url.newBuilder()
                 .addQueryParameter("key", BuildConfig.WEATHER_API_KEY)
                 .build()
             val newRequest = originalRequest.newBuilder()

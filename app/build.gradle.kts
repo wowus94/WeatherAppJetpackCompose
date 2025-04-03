@@ -75,6 +75,7 @@ dependencies {
     implementation(libs.glide.compose)
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.gsonConverter)
+    implementation(libs.logging.interceptor)
     implementation(libs.icons)
 
     implementation(libs.androidx.core.ktx)
