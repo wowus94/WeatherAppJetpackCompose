@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
             val currentWeather = apiService.loadCurrentWeather("London")
             val forecast = apiService.loadForecast("London")
             val cities = apiService.searchCity("London")
-            Log.i("TEST", "$currentWeather $forecast $cities")
+            Log.i("TEST", "$currentWeather\n$forecast\n$cities")
         }
 
         setContent {

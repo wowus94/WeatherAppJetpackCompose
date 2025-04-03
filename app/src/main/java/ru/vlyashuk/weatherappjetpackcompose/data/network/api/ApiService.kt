@@ -8,18 +8,18 @@ import ru.vlyashuk.weatherappjetpackcompose.data.network.dto.WeatherForecastDto
 
 interface ApiService {
 
-    @GET("current.json?key=key")
+    @GET("current.json?")
     suspend fun loadCurrentWeather(
         @Query("q") query: String
     ): WeatherCurrentDto
 
-    @GET("forecast.json?key=key")
+    @GET("forecast.json?")
     suspend fun loadForecast(
         @Query("q") query: String,
         @Query("days") daysCount: Int = 4
     ): WeatherForecastDto
 
-    @GET("search.json?key=key")
+    @GET("search.json?")
     suspend fun searchCity(
         @Query("q") query: String
     ): List<CityDto>
