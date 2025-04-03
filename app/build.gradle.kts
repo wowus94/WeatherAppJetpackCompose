@@ -2,12 +2,13 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.parcelize)
 }
 
 android {
     namespace = "ru.vlyashuk.weatherappjetpackcompose"
-    compileSdk = 34
-
+    compileSdk = 35
     defaultConfig {
         applicationId = "ru.vlyashuk.weatherappjetpackcompose"
         minSdk = 28
@@ -40,6 +41,25 @@ android {
 }
 
 dependencies {
+
+    implementation(libs.mvikotlin.core)
+    implementation(libs.mvikotlin.main)
+    implementation(libs.mvikotlin.coroutines)
+
+    implementation(libs.decompose.core)
+    implementation(libs.decompose.jetpack)
+
+
+    implementation(libs.room.core)
+    ksp(libs.room.compiler)
+
+    implementation(libs.dagger.core)
+    ksp(libs.dagger.compiler)
+
+    implementation(libs.glide.compose)
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.gsonConverter)
+    implementation(libs.icons)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
