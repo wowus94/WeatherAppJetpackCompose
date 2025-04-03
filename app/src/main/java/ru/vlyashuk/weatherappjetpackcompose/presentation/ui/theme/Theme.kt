@@ -1,4 +1,4 @@
-package ru.vlyashuk.weatherappjetpackcompose.ui.theme
+package ru.vlyashuk.weatherappjetpackcompose.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build
