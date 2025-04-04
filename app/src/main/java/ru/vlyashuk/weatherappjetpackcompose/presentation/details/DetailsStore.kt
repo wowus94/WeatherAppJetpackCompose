@@ -16,11 +16,11 @@ import ru.vlyashuk.weatherappjetpackcompose.presentation.details.DetailsStore.La
 import ru.vlyashuk.weatherappjetpackcompose.presentation.details.DetailsStore.State
 import javax.inject.Inject
 
-internal interface DetailsStore : Store<Intent, State, Label> {
+interface DetailsStore : Store<Intent, State, Label> {
 
     sealed interface Intent {
 
-        data object CLickBack : Intent
+        data object ClickBack : Intent
 
         data object ClickChangeFavouriteStatus : Intent
     }
@@ -51,7 +51,7 @@ internal interface DetailsStore : Store<Intent, State, Label> {
     }
 }
 
-internal class DetailsStoreFactory @Inject constructor(
+class DetailsStoreFactory @Inject constructor(
     private val storeFactory: StoreFactory,
     private val getForecastUseCase: GetForecastUseCase,
     private val changeFavouriteStateUseCase: ChangeFavouriteStateUseCase,
@@ -115,7 +115,7 @@ internal class DetailsStoreFactory @Inject constructor(
     private inner class ExecutorImpl : CoroutineExecutor<Intent, Action, State, Msg, Label>() {
         override fun executeIntent(intent: Intent, getState: () -> State) {
             when (intent) {
-                Intent.CLickBack -> {
+                Intent.ClickBack -> {
                     publish(Label.ClickBack)
                 }
 
