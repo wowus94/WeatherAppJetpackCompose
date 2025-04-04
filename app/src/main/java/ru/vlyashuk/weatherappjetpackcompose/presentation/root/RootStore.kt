@@ -1,13 +1,13 @@
-package ru.vlyashuk.weatherappjetpackcompose.presentation.favourite
+package ru.vlyashuk.weatherappjetpackcompose.presentation.root
 
 import com.arkivanov.mvikotlin.core.store.Reducer
 import com.arkivanov.mvikotlin.core.store.Store
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineBootstrapper
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
-import ru.vlyashuk.weatherappjetpackcompose.presentation.favourite.RootStore.Intent
-import ru.vlyashuk.weatherappjetpackcompose.presentation.favourite.RootStore.Label
-import ru.vlyashuk.weatherappjetpackcompose.presentation.favourite.RootStore.State
+import ru.vlyashuk.weatherappjetpackcompose.presentation.root.RootStore.Intent
+import ru.vlyashuk.weatherappjetpackcompose.presentation.root.RootStore.Label
+import ru.vlyashuk.weatherappjetpackcompose.presentation.root.RootStore.State
 
 internal interface RootStore : Store<Intent, State, Label> {
 
@@ -29,7 +29,7 @@ internal class RootStoreFactory(
             name = "RootStore",
             initialState = State(Unit),
             bootstrapper = BootstrapperImpl(),
-            executorFactory = ::ExecutorImpl,
+            executorFactory = RootStoreFactory::ExecutorImpl,
             reducer = ReducerImpl
         ) {}
 
