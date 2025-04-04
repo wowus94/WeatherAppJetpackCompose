@@ -5,6 +5,7 @@ import com.arkivanov.mvikotlin.core.instancekeeper.getStore
 import com.arkivanov.mvikotlin.extensions.coroutines.labels
 import com.arkivanov.mvikotlin.extensions.coroutines.stateFlow
 import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.StateFlow
@@ -59,6 +60,7 @@ class DefaultFavouriteComponent @AssistedInject constructor(
         store.accept(FavouriteStore.Intent.CityItemClicked(city))
     }
 
+    @AssistedFactory
     interface Factory {
 
         fun create(
