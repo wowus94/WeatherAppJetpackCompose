@@ -46,7 +46,6 @@ interface FavouriteStore : Store<Intent, State, Label> {
                 val tempC: Float,
                 val iconUrl: String
             ) : WeatherState
-
         }
     }
 
@@ -97,7 +96,6 @@ class FavouriteStoreFactory @Inject constructor(
         data class WeatherIsLoading(
             val cityId: Int
         ) : Msg
-
     }
 
     private inner class BootstrapperImpl : CoroutineBootstrapper<Action>() {
@@ -134,17 +132,17 @@ class FavouriteStoreFactory @Inject constructor(
                     dispatch(Msg.FavouriteCitiesLoaded(cities))
                     cities.forEach {
                         scope.launch {
-                            loadedWeatherForCity(it)
+                            loadWeatherForCity(it)
                         }
                     }
                 }
             }
         }
 
-        private suspend fun loadedWeatherForCity(city: City) {
+        private suspend fun loadWeatherForCity(city: City) {
             dispatch(Msg.WeatherIsLoading(city.id))
-            val weather = getCurrentWeatherUseCase(city.id)
             try {
+                val weather = getCurrentWeatherUseCase(city.id)
                 dispatch(
                     Msg.WeatherLoaded(
                         cityId = city.id,
@@ -153,7 +151,9 @@ class FavouriteStoreFactory @Inject constructor(
                     )
                 )
             } catch (e: Exception) {
-                Msg.WeatherLoadingError(city.id)
+                dispatch(
+                    Msg.WeatherLoadingError(city.id)
+                )
             }
         }
     }
