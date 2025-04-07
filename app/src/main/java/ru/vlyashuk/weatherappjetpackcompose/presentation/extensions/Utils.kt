@@ -20,7 +20,7 @@ fun ComponentContext.componentScope() = CoroutineScope(
 fun Float.tempToFormattedString(): String = "${roundToInt()}°C"
 
 fun Calendar.formattedFullDate(): String {
-    val format = SimpleDateFormat("EEEE | d NNN y", Locale.getDefault())
+    val format = SimpleDateFormat("EEEE | d MMM y", Locale.getDefault())
     return format.format(time)
 }
 

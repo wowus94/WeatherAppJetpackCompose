@@ -15,8 +15,8 @@ import ru.vlyashuk.weatherappjetpackcompose.presentation.extensions.componentSco
 
 class DefaultFavouriteComponent @AssistedInject constructor(
     private val favouriteStoreFactory: FavouriteStoreFactory,
-    @Assisted("onItemClicked") private val onItemClicked: (City) -> Unit,
-    @Assisted("onAddFavoriteClicked") private val onAddFavoriteClicked: () -> Unit,
+    @Assisted("onCityItemClicked") private val onCityItemClicked: (City) -> Unit,
+    @Assisted("onAddFavouriteClicked") private val onAddFavouriteClicked: () -> Unit,
     @Assisted("onSearchClicked") private val onSearchClicked: () -> Unit,
     @Assisted("componentContext") componentContext: ComponentContext
 ) : FavouriteComponent, ComponentContext by componentContext {
@@ -29,15 +29,15 @@ class DefaultFavouriteComponent @AssistedInject constructor(
             store.labels.collect {
                 when (it) {
                     is FavouriteStore.Label.CityItemClicked -> {
-                        onItemClicked(it.city)
+                        onCityItemClicked(it.city)
                     }
 
                     FavouriteStore.Label.ClickSearch -> {
-                        onAddFavoriteClicked
+                        onSearchClicked()
                     }
 
                     FavouriteStore.Label.ClickToFavourite -> {
-                        onSearchClicked
+                        onAddFavouriteClicked()
                     }
                 }
             }
@@ -46,7 +46,6 @@ class DefaultFavouriteComponent @AssistedInject constructor(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     override val model: StateFlow<FavouriteStore.State> = store.stateFlow
-
 
     override fun onClickSearch() {
         store.accept(FavouriteStore.Intent.ClickSearch)
@@ -64,8 +63,8 @@ class DefaultFavouriteComponent @AssistedInject constructor(
     interface Factory {
 
         fun create(
-            @Assisted("onItemClicked") onItemClicked: (City) -> Unit,
-            @Assisted("onAddFavoriteClicked") onAddFavoriteClicked: () -> Unit,
+            @Assisted("onCityItemClicked") onCityItemClicked: (City) -> Unit,
+            @Assisted("onAddFavouriteClicked") onAddFavouriteClicked: () -> Unit,
             @Assisted("onSearchClicked") onSearchClicked: () -> Unit,
             @Assisted("componentContext") componentContext: ComponentContext
         ): DefaultFavouriteComponent

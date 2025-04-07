@@ -53,10 +53,10 @@ class DefaultRootComponent @AssistedInject constructor(
 
             Config.Favourite -> {
                 val component = favouriteComponentFactory.create(
-                    onItemClicked = {
+                    onCityItemClicked = {
                         navigation.push(Config.Details(it))
                     },
-                    onAddFavoriteClicked = {
+                    onAddFavouriteClicked = {
                         navigation.push(Config.Search(openReason = OpenReason.AddToFavourite))
                     },
                     onSearchClicked = {
