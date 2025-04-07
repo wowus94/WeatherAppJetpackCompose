@@ -3,4 +3,7 @@
     <string name="button_add_to_favourite">Добавить в избранное</string>
     <string name="search">Поиск</string>
     <string name="upcoming">Прогноз на 3 дня</string>
+    <string name="empty_result">По Вашему запросу ничего не найдено</string>
+    <string name="error_text">Что-то пошло не так</string>
+    <string name="search_title">Поиск...</string>
 </resources>
