@@ -2,4 +2,5 @@
     <string name="app_name">WeatherAppJetpackCompose</string>
     <string name="button_add_to_favourite">Добавить в избранное</string>
     <string name="search">Поиск</string>
+    <string name="upcoming">Прогноз на 3 дня</string>
 </resources>
